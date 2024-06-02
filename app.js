@@ -7,7 +7,6 @@ const app = Vue.createApp({
             monsterHealth:100,
             isPlayerChance:true,
             winnerName:'',
-            leftSpecialAttacks:5,
         }
     },
     methods: {
