@@ -37,7 +37,7 @@
       <section v-if="!gameOver" id="controls" class="container">
         <button v-on:click="onAttack()">ATTACK</button>
         <button v-on:click="onSpecialAttack()">SPECIAL ATTACK</button>
-        <button v-on:click="onHeal()">HEAL</button>
+        <button v-on:click="onHeal()">HEAL ({{isPlayerChance?allowedHealsForPlayer:allowedHealsForMonster}})</button>
         <button v-on:click="onSurrender()">SURRENDER</button>
       </section>
       <section class="container" v-else >

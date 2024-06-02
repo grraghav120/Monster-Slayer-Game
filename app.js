@@ -7,6 +7,8 @@ const app = Vue.createApp({
             monsterHealth:100,
             isPlayerChance:true,
             winnerName:'',
+            allowedHealsForPlayer:2,
+            allowedHealsForMonster:2,
         }
     },
     methods: {
@@ -64,12 +66,16 @@ const app = Vue.createApp({
             let healValue=Math.floor(Math.random()*10)+5;
             let log;
             if(this.isPlayerChance){
+                if(this.allowedHealsForPlayer<=0) return;
                 this.playerHealth+=healValue;
                 log=`<span class="log--player">Player</span> heals himself for <span class="log--heal">${healValue}</span>`;
+                this.allowedHealsForPlayer--;
             }
             else{
+                if(this.allowedHealsForMonster<=0) return;
                 this.monsterHealth+=healValue;
                 log=`<span class="log--monster">Monster</span> heals himself for <span class="log--heal">${healValue}</span>`;
+                this.allowedHealsForMonster--;
             }
             this.logs.push(log);
             if(this.monsterHealth>=100) this.monsterHealth=100;
@@ -86,6 +92,8 @@ const app = Vue.createApp({
             this.playerHealth=100;
             this.monsterHealth=100;
             this.logs=[];
+            this.allowedHealsForMonster=2;
+            this.allowedHealsForPlayer=2;
         }
     },
 });
